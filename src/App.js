@@ -4,6 +4,7 @@ import './App.css';
 import AddItems from './Component/AddItems/AddItems';
 import Blogs from './Component/Blogs/Blogs';
 import Home from './Component/Home/Home';
+import ProductsDetails from './Component/Home/ProductsDetails';
 import Login from './Component/Login/Login';
 import ManageItems from './Component/ManageItems/ManageItems';
 import MyItems from './Component/MyItems/MyItems';
@@ -20,9 +21,9 @@ function App() {
         <Route path='/addItems' element={<AddItems></AddItems>}></Route>
         <Route path='/myItems' element={<MyItems></MyItems>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path= '/service/:productId' element={<ProductsDetails></ProductsDetails>}></Route>
       </Routes>
-      <h2>this is a react app </h2>
-      <Home></Home>
+
     </div>
   );
 }
