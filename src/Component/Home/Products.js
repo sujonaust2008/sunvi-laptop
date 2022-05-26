@@ -10,11 +10,12 @@ const Products = () => {
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])
+    const sliceProducts = products.slice(0,6);
     return (
         <div>
             <div className='productsStyle'>
                 {
-                    products.map(product=><Product
+                    sliceProducts.map(product=><Product
                     key={product._id}
                     product={product}
                     ></Product>)
