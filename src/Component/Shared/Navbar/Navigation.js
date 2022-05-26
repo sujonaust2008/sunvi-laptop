@@ -18,13 +18,17 @@ const Navigation = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto d-flex align-items-center">
                             <div className='d-flex'>
-                                <Nav.Link href="#features"><CustomLink to="/">Home</CustomLink></Nav.Link>
-                                <Nav.Link href="#pricing"><CustomLink to="/blogs">Blogs</CustomLink></Nav.Link>
-                                <Nav.Link href="#pricing"><CustomLink to="/manageInventory">ManageItems</CustomLink></Nav.Link>
-                                <Nav.Link href="#pricing"><CustomLink to="/addItems">AddItems</CustomLink></Nav.Link>
+                                <Nav.Link><CustomLink to="/">Home</CustomLink></Nav.Link>
+                                <Nav.Link><CustomLink to="/blogs">Blogs</CustomLink></Nav.Link>
+                                {
+                                    user && <>
+                                    <Nav.Link ><CustomLink to="/manageInventory">ManageItems</CustomLink></Nav.Link>
+                                <Nav.Link ><CustomLink to="/addItems">AddItems</CustomLink></Nav.Link>
+                                    </>
+                                }
                             </div>
                             <div>
-                                <Nav.Link href="#pricing">{user?
+                                <Nav.Link>{user?
                                 <button onClick={handleSignOut} className="btn btn-link text-decoration-none text-white">SignOut</button>:
                                 <CustomLink to="/login">LogIn</CustomLink>}</Nav.Link>
                             </div>
