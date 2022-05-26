@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Product from './Product';
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -18,6 +19,11 @@ const Products = () => {
                     product={product}
                     ></Product>)
                 }
+            </div>
+            <div className='text-center'>
+                <Link to='/manageInventory'>
+                 <button className='btn btn-primary rounded px-5 text-white fw-bold fs-3'>Manage Inventories</button>
+                </Link>
             </div>
         </div>
     );

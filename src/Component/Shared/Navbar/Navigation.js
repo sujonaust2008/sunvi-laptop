@@ -20,9 +20,8 @@ const Navigation = () => {
                             <div className='d-flex'>
                                 <Nav.Link href="#features"><CustomLink to="/">Home</CustomLink></Nav.Link>
                                 <Nav.Link href="#pricing"><CustomLink to="/blogs">Blogs</CustomLink></Nav.Link>
-                                <Nav.Link href="#pricing"><CustomLink to="/manageItems">ManageItems</CustomLink></Nav.Link>
+                                <Nav.Link href="#pricing"><CustomLink to="/manageInventory">ManageItems</CustomLink></Nav.Link>
                                 <Nav.Link href="#pricing"><CustomLink to="/addItems">AddItems</CustomLink></Nav.Link>
-                                <Nav.Link href="#pricing"><CustomLink to="/myItems">MyItems</CustomLink></Nav.Link>
                             </div>
                             <div>
                                 <Nav.Link href="#pricing">{user?
