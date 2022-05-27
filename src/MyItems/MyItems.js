@@ -6,15 +6,15 @@ import '../Component/ManageInventory/ManageInventory.css';
 
 const MyItems = () => {
     const [services, setServices] = useServices();
-    const {productId} = useParams();
-    const [productDetail, setproductDetail]= useState({});
-    useEffect(()=>{
-        const URL = `http://localhost:5000/service/${productId}`;
-        fetch(URL)
-        .then(res=>res.json())
-        .then(data=>setproductDetail(data))
-    },[])
-
+    // const {productId} = useParams();
+    // const [productDetail, setproductDetail]= useState({});
+    // useEffect(()=>{
+    //     const URL = `http://localhost:5000/service/${productId}`;
+    //     fetch(URL)
+    //     .then(res=>res.json())
+    //     .then(data=>setproductDetail(data))
+    // },[])
+    const addLastItem = services[services.length-1];
     const handleDelete = id =>{
         const proceed = window.confirm('Are you want to delete?');
         if(proceed){
@@ -48,11 +48,11 @@ const MyItems = () => {
                         <tbody>
                             <tr className='tableStyle'>
                             
-                                <td>{productDetail?.name}</td>
-                                <td className='text-center'>{productDetail?.price}</td>
-                                <td className='text-center'>{productDetail?.quantity}</td>
+                                <td>{addLastItem?.name}</td>
+                                <td className='text-center'>{addLastItem?.price}</td>
+                                <td className='text-center'>{addLastItem?.quantity}</td>
                                 <td className='text-center'>
-                                    <button className='btn rounded px-4' onClick={()=>handleDelete(productDetail?._id)}>
+                                    <button className='btn rounded px-4' onClick={()=>handleDelete(addLastItem?._id)}>
                                         X
                                     </button>
                                 </td>
