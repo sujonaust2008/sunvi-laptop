@@ -1,19 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Home.css';
 
 const ProductsDetails = () => {
     const {productId} = useParams();
     const [productDetail, setproductDetail]= useState({});
+     
     useEffect(()=>{
         const URL = `http://localhost:5000/service/${productId}`;
         fetch(URL)
         .then(res=>res.json())
         .then(data=>setproductDetail(data))
     },[])
+
+    const handleQuantity = (itemQuantity) => {
+        
+        console.log(itemQuantity);
+        const oldQuantity = parseInt(productDetail.quantity);
+        const name= productDetail.name;
+        const img=productDetail.img;
+        const description = productDetail.description;
+        const supName= productDetail.supName;
+        const price = productDetail.price;
+        const quantity = oldQuantity-1;
+        console.log(quantity);
+        const update = { quantity,name,img,supName,price,description };
+        console.log(update);
+        const URL = `http://localhost:5000/service/${productId}`;
+        console.log(URL);
+        fetch(URL, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(update)
+        })
+            .then(res => res.json())
+            .then(data => {
+            alert('Product delivered successfully')
+                console.log('success', data);
+                setproductDetail(data);
+                
+            })
+            
+    }
     return (
-        <div className='mx-auto productDetail'>
+        <div>
+            <h2 className='text-info text-decoration-underline text-center mt-5 '>Product Information</h2>
+            <div className='mx-auto productDetail mb-3'>
             <div>
                 <Card className='p-3 cardHeight'>
                     <Card.Img variant="top" src={productDetail?.img} className="productsImg"/>
@@ -29,17 +64,29 @@ const ProductsDetails = () => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Body className='text-center'>
-                        <button className='btn btn-primary rounded px-3'>Delivered</button>
+                        
+                        <button onClick={() => handleQuantity(productDetail.quantity)}
+                        className='btn btn-primary rounded px-3'
+                        ><Link to='/' className='btn btn-primary rounded px-3'>Delivered</Link></button>
                     </Card.Body>
                 </Card>
             </div>
             <div className='text-center mt-2'>
-                <form action="">
+                <form >
                     <input type="text" placeholder='add quantity' name='number'></input>
                     <input type="submit" value='Restock' className='bg-primary text-white border-primary rounded-3'></input>
                 </form>
             </div>
+
+            
         </div>
+        <div className='text-center mt-4'>
+                <Link to='/manageInventory'>
+                 <button className='btn btn-primary rounded px-5 text-white fw-bold fs-3'>Manage Inventories</button>
+                </Link>
+            </div>
+        </div>
+        
     );
 };
 

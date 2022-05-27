@@ -10,6 +10,7 @@ import Register from './Component/Login/Register/Register';
 import RequireAuth from './Component/Login/RequireAuth.js/RequireAuth';
 import ManageInventory from './Component/ManageInventory/ManageInventory';
 import Navigation from './Component/Shared/Navbar/Navigation';
+import MyItems from './MyItems/MyItems';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
 
         <Route path='/addItems' element={<RequireAuth>
           <AddItems></AddItems>
+        </RequireAuth>}></Route>
+        <Route path='/myItems' element={<RequireAuth>
+          <MyItems></MyItems>
         </RequireAuth>}></Route>
 
         <Route path='/login' element={<Login></Login>}></Route>

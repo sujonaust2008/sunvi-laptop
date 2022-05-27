@@ -41,7 +41,7 @@
 
 .productDetail {
     margin-top: 100px;
-    width: 85%;
+    width: 60%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 45px;
