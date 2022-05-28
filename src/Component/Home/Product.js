@@ -1,13 +1,16 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+
 import './Home.css';
 
 const Product = ({product}) => {
     const{_id}= product;
     const navigate = useNavigate();
+   
     const productDetailPage = id =>{
         navigate(`/service/${id}`);
+       
     }
     return (
         <div>
@@ -29,6 +32,7 @@ const Product = ({product}) => {
                     <button onClick={()=> productDetailPage(_id)} className='btn btn-primary rounded px-3'>Update Now</button>
                 </Card.Body>
             </Card>
+           
         </div>
     );
 };

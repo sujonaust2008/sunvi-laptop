@@ -1,21 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Table } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 import useServices from '../Component/Hooks/Hooks';
-import '../Component/ManageInventory/ManageInventory.css';
+import auth from '../firebase.init';
+import './MyItems.css';
 
-const MyItems = () => {
+const MyItems = ({cart, setCart}) => {
+
+    const [user] = useAuthState(auth);
+    // const {_id}= cartItem;
+    // console.log(cartItem.name);
     const [services, setServices] = useServices();
-    // const {productId} = useParams();
-    // const [productDetail, setproductDetail]= useState({});
-    // useEffect(()=>{
-    //     const URL = `http://localhost:5000/service/${productId}`;
-    //     fetch(URL)
-    //     .then(res=>res.json())
-    //     .then(data=>setproductDetail(data))
-    // },[])
-    const addLastItem = services[services.length-1];
+    // // const {productId} = useParams();
+    // // const [productDetail, setproductDetail]= useState({});
+    // // useEffect(()=>{
+    // //     const URL = `http://localhost:5000/service/${productId}`;
+    // //     fetch(URL)
+    // //     .then(res=>res.json())
+    // //     .then(data=>setproductDetail(data))
+    // // },[])
+    // const addLastItem = services[services.length-1];
+    
     const handleDelete = id =>{
+        const arr = cart.filter(item=>item._id !==id);
+        setCart(arr);
+
         const proceed = window.confirm('Are you want to delete?');
         if(proceed){
             const url = `http://localhost:5000/service/${id}`;
@@ -31,11 +41,11 @@ const MyItems = () => {
         }
     }
     return (
-        <div className='w-50 mx-auto'>
-            <h2 className='my-5 text-center text-decoration-underline text-primary'>Manage your services</h2>
+        <div className='w-75 mx-auto'>
+            <h2 className='my-5 text-center text-decoration-underline text-primary'>Your Added Services</h2>
             <Table>
                 <tbody>
-                    <tr className='tableStyle bg-dark text-white rounded-top'>
+                    <tr className='tableStyleMyitems  bg-dark text-white rounded-top'>
                         <td className='fw-bold'>Name</td>
                         <td className='fw-bold text-center'>Price</td>
                         <td className='fw-bold text-center' >Quantity</td>
@@ -44,22 +54,27 @@ const MyItems = () => {
                 </tbody>
             </Table>
             
+            {
+                cart.map(addItemsToCart => <div key={addItemsToCart._id}>
                     <Table striped>
                         <tbody>
-                            <tr className='tableStyle'>
+                            <tr className='tableStyleMyitems '>
                             
-                                <td>{addLastItem?.name}</td>
-                                <td className='text-center'>{addLastItem?.price}</td>
-                                <td className='text-center'>{addLastItem?.quantity}</td>
+                                <td>{addItemsToCart.name}</td>
+                                <td className='text-center'>{addItemsToCart.price}</td>
+                                <td className='text-center'>{addItemsToCart.quantity}</td>
+                                
                                 <td className='text-center'>
-                                    <button className='btn rounded px-4' onClick={()=>handleDelete(addLastItem?._id)}>
+                                    <button className='btn rounded px-4' onClick={()=>handleDelete(addItemsToCart._id)}>
                                         X
                                     </button>
                                 </td>
                             </tr>
                             
                         </tbody>
-                    </Table>
+                    </Table>   
+                </div>)
+            }
 
             <div className='text-center mt-5'>
                 <Link to='/addItems'>

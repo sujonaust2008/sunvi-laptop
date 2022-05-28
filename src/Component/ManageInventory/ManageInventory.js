@@ -4,8 +4,17 @@ import { Link } from 'react-router-dom';
 import useServices from '../Hooks/Hooks';
 import './ManageInventory.css';
 
-const ManageInventory = () => {
+
+
+const ManageInventory = ({handleAddtoCart}) => {
     const [services, setServices] = useServices();
+
+    // const [cart, setCart]=useState([]);
+
+    // const handleAddtoCart = service=>{
+    //     const newCart = [...cart,service];
+    //     setCart(newCart);
+    // }
 
     const handleDelete = id =>{
         const proceed = window.confirm('Are you want to delete?');
@@ -23,7 +32,7 @@ const ManageInventory = () => {
         }
     }
     return (
-        <div className='w-50 mx-auto'>
+        <div className='w-75 mx-auto'>
             <h2 className='my-5 text-center text-decoration-underline text-primary'>Manage your services</h2>
             <Table>
                 <tbody>
@@ -31,6 +40,7 @@ const ManageInventory = () => {
                         <td className='fw-bold'>Name</td>
                         <td className='fw-bold text-center'>Price</td>
                         <td className='fw-bold text-center' >Quantity</td>
+                        <td className='fw-bold text-center' >Service</td>
                         <td className='fw-bold text-center'>Delete</td>
                     </tr>
                 </tbody>
@@ -45,6 +55,11 @@ const ManageInventory = () => {
                                 <td className='text-center'>{service.price}</td>
                                 <td className='text-center'>{service.quantity}</td>
                                 <td className='text-center'>
+                                    <button className='btn rounded px-4' onClick={()=>handleAddtoCart(service)}>
+                                        ByNow
+                                    </button>
+                                </td>
+                                <td className='text-center'>
                                     <button className='btn rounded px-4' onClick={()=>handleDelete(service._id)}>
                                         X
                                     </button>
@@ -57,6 +72,12 @@ const ManageInventory = () => {
                     
                 </div>)
             }
+            {/* {
+                cart.map(cartItem=><MyItems
+                    key={cartItem.id}
+                    cartItem={cartItem}
+                ></MyItems>)
+            } */}
             <div className='text-center mt-5'>
                 <Link to='/addItems'>
                  <button className='btn btn-primary rounded px-5 text-white fw-bold fs-3'>Add New Items</button>
