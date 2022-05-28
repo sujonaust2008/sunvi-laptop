@@ -15,7 +15,7 @@ const MyItems = ({cart, setCart}) => {
     // // const {productId} = useParams();
     // // const [productDetail, setproductDetail]= useState({});
     // // useEffect(()=>{
-    // //     const URL = `http://localhost:5000/service/${productId}`;
+    // //     const URL = `https://floating-sands-97390.herokuapp.com/service/${productId}`;
     // //     fetch(URL)
     // //     .then(res=>res.json())
     // //     .then(data=>setproductDetail(data))
@@ -28,7 +28,7 @@ const MyItems = ({cart, setCart}) => {
 
         const proceed = window.confirm('Are you want to delete?');
         if(proceed){
-            const url = `http://localhost:5000/service/${id}`;
+            const url = `https://floating-sands-97390.herokuapp.com/service/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

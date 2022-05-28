@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/service')
+        fetch('https://floating-sands-97390.herokuapp.com/service')
         .then(res=>res.json())
         .then(data=>setProducts(data))
     },[])

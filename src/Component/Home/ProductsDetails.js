@@ -8,7 +8,7 @@ const ProductsDetails = () => {
     const [productDetail, setproductDetail]= useState({});
      
     useEffect(()=>{
-        const URL = `http://localhost:5000/service/${productId}`;
+        const URL = `https://floating-sands-97390.herokuapp.com/service/${productId}`;
         fetch(URL)
         .then(res=>res.json())
         .then(data=>setproductDetail(data))
@@ -27,7 +27,7 @@ const ProductsDetails = () => {
         console.log(quantity);
         const update = { quantity,name,img,supName,price,description };
         console.log(update);
-        const URL = `http://localhost:5000/service/${productId}`;
+        const URL = `https://floating-sands-97390.herokuapp.com/service/${productId}`;
         console.log(URL);
         fetch(URL, {
             method: 'PUT',
@@ -62,7 +62,7 @@ const ProductsDetails = () => {
         console.log(quantity);
         const update = { quantity,name,img,supName,price,description };
         console.log(update);
-        const URL = `http://localhost:5000/service/${productId}`;
+        const URL = `https://floating-sands-97390.herokuapp.com/service/${productId}`;
         console.log(URL);
         fetch(URL, {
             method: 'PUT',

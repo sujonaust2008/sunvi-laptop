@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+
+
+
+
+# Project Name: Sunvi Laptop Warehouse
+* Project Description:
+* we use react-bootstrap and css for style this site
+* use Js with react for designing
+* use Node js for server side
+* use MongoDB for database 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
