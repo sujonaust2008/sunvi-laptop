@@ -10,6 +10,7 @@ import Login from './Component/Login/Login';
 import Register from './Component/Login/Register/Register';
 import RequireAuth from './Component/Login/RequireAuth.js/RequireAuth';
 import ManageInventory from './Component/ManageInventory/ManageInventory';
+import Footer from './Component/Shared/Footer/Footer';
 import Navigation from './Component/Shared/Navbar/Navigation';
 import NotFound from './Component/Shared/NotFound/NotFound';
 import MyItems from './MyItems/MyItems';
@@ -49,7 +50,7 @@ function App() {
         </RequireAuth>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
-
+      <Footer></Footer>
     </div>
   );
 }
